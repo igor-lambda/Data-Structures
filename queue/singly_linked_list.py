@@ -38,6 +38,18 @@ class LinkedList:
     def is_empty(self):
         return self.head == None
     
+    def add_to_end(self, data):
+        # this method needs to worry about whether the list is empty or not,
+        # because this dictates whether the new node will be placed at the head.
+        # or at the next_node of the last node
+        node = Node(data)
+        self.increment_size()
+        if self.is_empty():
+            self.head = node
+            self.tail = node
+        else:
+            self.tail.set_next(node)
+    
     def remove_from_head(self):
         # if list is empty, we can't remove anything, otherwise we need to 
         # turn head to the next node. In the end, we have to return data
@@ -72,25 +84,5 @@ class LinkedList:
             self.tail = node
         self.increment_size()
 
-    def contains(self, data):
-        # iterate through list and check for data in each node
-        exists = False
-        current = self.head
-        while current is not None:
-            if current.get_data() == data:
-                exists = True
-            current = current.get_next()
-        return exists
 
-
-linked = LinkedList()
-print("size", linked.size)
-linked.add_to_tail("tail")
-linked.state_props()
-linked.add_to_tail("tail2")
-linked.state_props()
-linked.remove_from_head()
-linked.state_props()
-linked.remove_from_head()
-print("size", linked.size)
 

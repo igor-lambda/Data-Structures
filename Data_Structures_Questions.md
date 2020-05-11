@@ -3,18 +3,30 @@ Answer the following questions for each of the data structures you implemented a
 ## Stack
 
 1. What is the runtime complexity of `push`?
+  
+  Constant 
 
 2. What is the runtime complexity of `pop`?
 
+  Constant
+
 3. What is the runtime complexity of `len`?
+
+  Constant
 
 ## Queue
 
 1. What is the runtime complexity of `enqueue`?
 
+  Constant  
+
 2. What is the runtime complexity of `dequeue`?
 
+  Constant
+
 3. What is the runtime complexity of `len`?
+
+  Constant
 
 ## Binary Search Tree
 
