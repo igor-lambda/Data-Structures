@@ -13,13 +13,29 @@ return elements in First In First Out order.
 class Queue:
     def __init__(self):
         self.size = 0
-        # self.storage = ?
+        self.storage = []
     
     def __len__(self):
-        pass
+        return len(self.storage)
 
     def enqueue(self, value):
-        pass
+        self.size = self.size + 1
+        self.storage.insert(0, value)
 
     def dequeue(self):
-        pass
+        if self.size == 0:
+            return None
+        else :
+            self.size = self.size - 1
+            return self.storage.pop()
+
+    def state_props(self):
+        print(self.size, self.storage)
+
+q = Queue()
+
+q.state_props()
+q.enqueue("first")
+q.state_props()
+q.dequeue()
+q.state_props()
