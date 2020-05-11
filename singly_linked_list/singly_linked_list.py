@@ -81,6 +81,23 @@ class LinkedList:
                 exists = True
             current = current.get_next()
         return exists
+    
+    def get_max(self):
+        # Iterate through list, ask if next data is greater than head data
+        # return biggest data
+        if self.is_empty():
+            return None
+        
+        max = self.head.get_data()
+        current = self.head
+        while current.get_next() is not None:
+            current = current.get_next()
+            if current.get_data() > max:
+                max = current.get_data()
+        return max
+
+    
+
 
 
 linked = LinkedList()
