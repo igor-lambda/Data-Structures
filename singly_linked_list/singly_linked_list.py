@@ -96,6 +96,22 @@ class LinkedList:
                 max = current.get_data()
         return max
 
+    def remove_head(self):
+        # make head the next node, return old head value
+        if self.is_empty():
+            return None
+        elif self.size == 1:
+            data = self.head.get_data()
+            print('lala', data)
+            self.head = None
+            self.tail = None
+            self.decrement_size()
+            return data
+        else:
+            data = self.head.get_data()
+            self.head = self.head.get_next()
+            self.decrement_size()
+            return data
     
 
 
