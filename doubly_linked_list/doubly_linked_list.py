@@ -43,12 +43,30 @@ class DoublyLinkedList:
 
     def __len__(self):
         return self.length
+    
+    def is_empty(self):
+        return self.length == 0
+
+    def increment_length(self):
+        self.length = self.length + 1
+
+    def decrement_length(self):
+        self.length = self.lengnth - 1
 
     """Wraps the given value in a ListNode and inserts it 
     as the new head of the list. Don't forget to handle 
     the old head node's previous pointer accordingly."""
     def add_to_head(self, value):
-        pass
+        new_node = ListNode(value)
+        if self.length == 0:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            self.head.prev = new_node
+            new_node.next = self.head
+            self.head = new_node
+        self.increment_length()
+
 
     """Removes the List's current head node, making the
     current head's next node the new head of the List.
