@@ -119,6 +119,16 @@ class DoublyLinkedList:
             self.tail = new_node
         self.increment_length()
 
+    def add_node_to_tail(self, node):
+        if self.is_empty():
+            self.head = node
+            self.tail = node
+        else:
+            self.tail.next = node
+            node.prev = self.tail
+            self.tail = node
+        self.increment_length()
+
     """Removes the List's current tail node, making the 
     current tail's previous node the new tail of the List.
     Returns the value of the removed Node."""
@@ -177,10 +187,7 @@ class DoublyLinkedList:
             return None
         else:
             self.delete(node)
-            self.tail.next = node
-            node.prev = self.tail
-            self.tail = node
-            self.increment_length()
+            self.add_node_to_tail(node)
 
         # to shame myself
         # if self.is_empty() or self.tail == node:
