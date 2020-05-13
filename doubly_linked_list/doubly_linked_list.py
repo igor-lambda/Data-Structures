@@ -75,6 +75,16 @@ class DoublyLinkedList:
             self.head = new_node
         self.increment_length()
 
+    def add_node_to_head(self, node):
+        if self.is_empty():
+            self.head = node
+            self.tail = node
+        else:
+            self.head.prev = node
+            node.next = self.head
+            self.head = node
+            self.increment_length()
+
     """Removes the List's current head node, making the
     current head's next node the new head of the List.
     Returns the value of the removed Node."""
@@ -136,10 +146,7 @@ class DoublyLinkedList:
             return None
         else:
             self.delete(node)
-            self.head.prev = node
-            node.next = self.head
-            self.head = node
-            self.increment_length()
+            self.add_node_to_head(node)
 
         # shamesies
 
