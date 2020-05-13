@@ -16,21 +16,46 @@ class BSTNode:
         self.right = None
 
     # Insert the given value into the tree
+    # This is a recursive 
     def insert(self, value):
-        pass
+        if value < self.value: # we insert lesser values on left
+            if not self.left:
+                self.left = BSTNode(value) # if there is no left child, make it left child
+            else:
+                self.left.insert(value) # else keep looking down left branch
+        else:
+            if not self.right:
+                self.right = BSTNode(value) # if no right child, attach as right child, give that value is  eql or greater
+            else:
+                self.right.insert(value) # else keep looking down right branch
+        
 
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
-        pass
+        if self.value == target:
+            return True
+        elif self.value > target:
+            if not self.left:
+                return False
+            return self.left.contains(target)
+        else:
+            if not self.right:
+                return False
+            return self.right.contains(target)
+        
+            
 
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        if not self.right:
+            return self.value # simply return the right most value
+        else:
+            return self.right.get_max()
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
-        pass
+        
 
     # Part 2 -----------------------
 
