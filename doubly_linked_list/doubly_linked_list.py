@@ -153,7 +153,22 @@ class DoublyLinkedList:
     """Removes a node from the list and handles cases where
     the node was the head or the tail"""
     def delete(self, node):
-        pass
+        if self.is_empty():
+            return None
+        elif self.head == node:
+            self.head.next.prev = None
+            self.head.next = self.head
+        elif self.tail == node:
+            self.tail.prev.next = None
+            self.tail = node
+        else:
+            current_node = self.head.next
+            while current_node.next is not None: # skipping head nnd tail nodes
+                if current_node == node:
+                    current_node.prev.next = current_node.next
+                    current_node.next.prev = current_node.prev
+                current_node = current_node.next
+        self.decrement_length()
         
     """Returns the highest value currently in the list"""
     def get_max(self):
