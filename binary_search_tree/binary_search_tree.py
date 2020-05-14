@@ -11,6 +11,26 @@ This part of the project comprises two days:
 """
 
 
+class Stack:
+    def __init__(self):
+        self.size = 0
+        self.storage = []
+
+    def __len__(self):
+        return len(self.storage)
+
+    def push(self, value):
+        self.size = self.size + 1
+        self.storage.append(value)
+
+    def pop(self):
+        if self.size == 0:
+            return None
+        else:
+            self.size = self.size - 1
+            return self.storage.pop()
+
+
 class Queue:
     def __init__(self):
         self.size = 0
@@ -103,9 +123,9 @@ class BSTNode:
     def bft_print(self, node):
         q = Queue()
         q.enqueue(node)
-        while q.size > 0: # This works because we will get to q.size 0 when we run out of children
+        while q.size > 0:  # This works because we will get to q.size 0 when we run out of children
             node = q.dequeue()
-            print(node.value) 
+            print(node.value)
             if node.left:
                 q.enqueue(node.left)
             if node.right:
@@ -115,12 +135,23 @@ class BSTNode:
     # in an iterative depth first traversal
 
     def dft_print(self, node):
-        pass
+        # The reason a stack switches this from breadth to depth, is that we are processing the
+        # left child of the very node we just processed before we look at the right child
+        s = Stack()
+        s.push(node)
+        while s.size > 0: 
+            node = s.pop()
+            print(node.value)
+            if node.left:
+                s.push(node.left)
+            if node.right:
+                s.push(node.right)
 
     # Stretch Goals -------------------------
     # Note: Research may be required
 
     # Print Pre-order recursive DFT
+
     def pre_order_dft(self, node):
         pass
 
@@ -129,14 +160,14 @@ class BSTNode:
         pass
 
 
-bst = BSTNode(1)
-bst.insert(8)
-bst.insert(5)
-bst.insert(7)
-bst.insert(6)
-bst.insert(3)
-bst.insert(4)
-bst.insert(2)
+# bst = BSTNode(1)
+# bst.insert(8)
+# bst.insert(5)
+# bst.insert(7)
+# bst.insert(6)
+# bst.insert(3)
+# bst.insert(4)
+# bst.insert(2)
 
-# bst.in_order_print(bst)
-bst.bft_print(bst)
+# # bst.in_order_print(bst)
+# bst.dft_print(bst)
