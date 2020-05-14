@@ -11,6 +11,29 @@ This part of the project comprises two days:
 """
 
 
+class Queue:
+    def __init__(self):
+        self.size = 0
+        self.storage = []
+
+    def __len__(self):
+        return len(self.storage)
+
+    def enqueue(self, value):
+        self.size = self.size + 1
+        self.storage.insert(0, value)
+
+    def dequeue(self):
+        if self.size == 0:
+            return None
+        else:
+            self.size = self.size - 1
+            return self.storage.pop()
+
+    def state_props(self):
+        print(self.size, self.storage)
+
+
 class BSTNode:
     def __init__(self, value):
         self.value = value
@@ -78,10 +101,19 @@ class BSTNode:
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
-        pass
+        q = Queue()
+        q.enqueue(node)
+        while q.size > 0: # This works because we will get to q.size 0 when we run out of children
+            node = q.dequeue()
+            print(node.value) 
+            if node.left:
+                q.enqueue(node.left)
+            if node.right:
+                q.enqueue(node.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
+
     def dft_print(self, node):
         pass
 
@@ -106,4 +138,5 @@ bst.insert(3)
 bst.insert(4)
 bst.insert(2)
 
-bst.in_order_print(bst)
+# bst.in_order_print(bst)
+bst.bft_print(bst)
