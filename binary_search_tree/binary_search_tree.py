@@ -157,13 +157,19 @@ class BSTNode:
         # That way, if a node's left or right is None, we simply return and go down the 
         # call stack
         if node is not None: 
-            print(node.value), 
+            print(node.value)
             self.pre_order_dft(node.left) 
             self.pre_order_dft(node.right) 
 
     # Print Post-order recursive DFT
     def post_order_dft(self, node):
-        pass
+        # The reason switching up the order makes a difference, is because we have to be done
+        # traversing both left and right subtrees before we print. This forces us to visit the root
+        # last, and to print the right child of a subtree first
+        if node is not None: 
+            self.post_order_dft(node.left) 
+            self.post_order_dft(node.right) 
+            print(node.value)
 
 
 # bst = BSTNode(1)
