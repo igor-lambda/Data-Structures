@@ -3,7 +3,6 @@ class Node:
         self.data = initial_data
         self.next = None
         
-
     def get_data(self):
         return self.data
 
